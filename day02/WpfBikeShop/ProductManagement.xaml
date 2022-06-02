@@ -22,7 +22,6 @@
             <TextBox x:Name="txtSearch" Width="730" Margin="10" TextChanged="txtSearch_TextChanged"/>
 
         </StackPanel>
-
         <DataGrid x:Name="dgrProducts" Grid.Row="1" Grid.Column="0" Margin="10"/>
         <Border Grid.Row="1" Grid.Column="1" Margin="10"
                 DataContext="{Binding SelectedItem, ElementName=dgrProducts}">
