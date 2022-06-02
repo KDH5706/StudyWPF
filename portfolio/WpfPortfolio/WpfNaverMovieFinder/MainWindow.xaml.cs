@@ -11,5 +11,15 @@ namespace WpfNaverMovieFinder
         {
             InitializeComponent();
         }
+
+        private void txtSearchName_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+
+        }
+
+        private void btnSearch_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+
+        }
     }
 }
