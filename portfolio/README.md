@@ -19,7 +19,7 @@
 
 <br/>
   
-  ![YoutubePlay](https://github.com/KDH5706/StudyWPF/blob/main/capture/youtube_trailer.png?raw=true)
+  ![YoutubePlay](https://github.com/KDH5706/StudyWPF/blob/main/capture/youtube_trailer.png)
   ###### 검색영화 예고편보기 실행화면
 
 <br/>
