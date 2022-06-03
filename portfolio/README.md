@@ -1,6 +1,8 @@
 # WPF 포트폴리오 
 [뒤로가기](https://github.com/KDH5706/StudyWPF/blob/main/README.md)
 
+<br/>
+
 ## Naver 영화검색
 - WPF (.NET Framework 4.7.2 / C#)
   - MahApps.Metro UI/Morden UI
@@ -9,9 +11,13 @@
   - Google.Apis.Youtube.v3
   - CefSharp WebBrowser component
   - EntityFramework DB
+
+<br/>
   
   ![NaverMovieFinder](https://github.com/KDH5706/StudyWPF/blob/main/capture/lalaland.png)
-  실행화면
+  ###### 실행화면
+
+<br/>
   
   ![YoutubePlay](https://github.com/KDH5706/StudyWPF/blob/main/capture/youtube_trailer.png?raw=true)
-  검색영화 예고편보기 실행화면
+  ###### 검색영화 예고편보기 실행화면
