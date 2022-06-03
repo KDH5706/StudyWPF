@@ -91,7 +91,8 @@
             </Button>
 
             <Button x:Name="btnViewWatchList" Content="즐겨찾기 보기" Margin="10"
-                    Width="150" FontSize="12" Click="btnViewWatchList_Click">
+                    Style="{StaticResource MahApps.Styles.Button.Dialogs.AccentHighlight}"
+                    Width="150" Height="60" FontSize="12" Click="btnViewWatchList_Click">
                 <Button.ContentTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
