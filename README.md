@@ -17,4 +17,4 @@ C# WPF 학습 리포지토리
 ## Day 3일차
 - 디자인
 - 리소스
-- 네이버 영화 앱 만들기
+- 네이버 영화 앱 만들기 ([클릭](https://github.com/KDH5706/StudyWPF/tree/main/portfolio))
