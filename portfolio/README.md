@@ -24,8 +24,12 @@
 
 <br/>
 
-## Naver 영화검색
+## Naver 뉴스검색
 - WPF (.NET Framework 4.7.2 / C#)
   - MahApps.Metro UI/Morden UI
   - Newtonsoft.Json
   - Naver OpenAPI
+
+<br/>
+
+![NaverNewsSearch](https://github.com/KDH5706/StudyWPF/blob/main/capture/naver_newssearch.png)
