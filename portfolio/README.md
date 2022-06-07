@@ -32,5 +32,4 @@
 
 <br/>
 
-![NaverNewsSearch](![image](https://user-images.githubusercontent.com/98368484/172277992-498181fd-2333-4e8e-9721-f96b8c68198d.png)
-)
+![NaverNewsSearch](https://github.com/KDH5706/StudyWPF/blob/main/capture/naver_newssearch.png)
