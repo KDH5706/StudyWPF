@@ -26,7 +26,7 @@
 
 ## Naver 뉴스검색
 - WPF (.NET Framework 4.7.2 / C#)
-  - MahApps.Metro UI/Morden UI
+  - MahApps.Metro UI/Modern UI
   - Newtonsoft.Json
   - Naver OpenAPI
 
