@@ -32,4 +32,4 @@
 
 <br/>
 
-![NaverNewsSearch](https://github.com/KDH5706/StudyWPF/blob/main/capture/navernewssearch.png)
+![NaverNewsSearch](https://github.com/KDH5706/StudyWPF/blob/main/capture/naver_newssearch.png)
