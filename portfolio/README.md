@@ -1,5 +1,4 @@
 # WPF 포트폴리오 
-[뒤로가기](https://github.com/KDH5706/StudyWPF/blob/main/README.md)
 
 <br/>
 
