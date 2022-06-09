@@ -20,7 +20,7 @@ C# WPF 학습 리포지토리
 - 네이버 영화 앱 만들기 ([클릭](https://github.com/KDH5706/StudyWPF/blob/main/portfolio/README.md#naver-%EC%98%81%ED%99%94%EA%B2%80%EC%83%89))
 
 ## Day 4일차
-- 네이버 영화 앱 마무리 ([클릭](https://github.com/KDH5706/StudyWPF/tree/main/portfolio))
+- 네이버 영화 앱 마무리 ([클릭](https://github.com/KDH5706/StudyWPF/blob/main/portfolio/README.md#naver-%EC%98%81%ED%99%94%EA%B2%80%EC%83%89))
 - 네이버 뉴스검색 ([클릭](https://github.com/KDH5706/StudyWPF/blob/main/portfolio/README.md#naver-%EB%89%B4%EC%8A%A4%EA%B2%80%EC%83%89))
 
 ## Day 5일차
@@ -29,7 +29,7 @@ C# WPF 학습 리포지토리
 ## Day 6일차
 - Caliburn.Micro MVVM 학습
 - Bogus(FakeData, DummyData) 패키지 학습
-- SmartHome 앱 만들기 ([클릭](https://github.com/KDH5706/StudyWPF/tree/main/portfolio#smarthome-%EB%AA%A8%EB%8B%88%ED%84%B0%EB%A7%81%EC%95%B1))
+- SmartHome 앱 만들기 ([클릭](https://github.com/KDH5706/StudyWPF/blob/main/portfolio/README.md#smarthome-%EB%AA%A8%EB%8B%88%ED%84%B0%EB%A7%81%EC%95%B1))
 
 ## Day 7일차
 - SmartHome 시스템 만들기 
