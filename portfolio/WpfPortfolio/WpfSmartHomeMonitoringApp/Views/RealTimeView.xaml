@@ -3,10 +3,181 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:iconpacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
              xmlns:local="clr-namespace:WpfSmartHomeMonitoringApp.Views"
              mc:Ignorable="d" 
              d:DesignHeight="700" d:DesignWidth="1280">
     <Grid>
-        <Label Content="RealTimeView" FontSize="30"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
+            <iconpacks:PackIconSimpleIcons 
+                Kind="SmartThings" VerticalAlignment="Center" Margin="20,5"
+                RenderTransformOrigin="0.5,0.5" Foreground="DodgerBlue">
+                <iconpacks:PackIconSimpleIcons.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleX="2" ScaleY="2"/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </iconpacks:PackIconSimpleIcons.RenderTransform>
+            </iconpacks:PackIconSimpleIcons>
+            <Label Content="Realtime Iot Data Monitoring"
+               Style="{StaticResource MahApps.Styles.Label}"
+               FontSize="30" FontWeight="Bold" Foreground="DodgerBlue"/>
+        </StackPanel>
+
+        <Grid Grid.Row="1" Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Row="0" Grid.Column="1" FontSize="16"
+                   Content="Living Room" 
+                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Label Grid.Row="0" Grid.Column="2" FontSize="16"
+                   Content="Dining Room" 
+                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Label Grid.Row="0" Grid.Column="3" FontSize="16"
+                   Content="Bed Room" 
+                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Label Grid.Row="0" Grid.Column="4" FontSize="16"
+                   Content="Bath Room" 
+                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+            <Label Grid.Row="1" Grid.Column="0" FontSize="18" FontWeight="Bold"
+                   Content="Temperature" 
+                   HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Label.LayoutTransform>
+                    <RotateTransform Angle="-90"/>
+                </Label.LayoutTransform>
+            </Label>
+            <Label Grid.Row="2" Grid.Column="0" FontSize="18" FontWeight="Bold"
+                   Content="Humidity" 
+                   HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Label.LayoutTransform>
+                    <RotateTransform Angle="-90"/>
+                </Label.LayoutTransform>
+            </Label>
+
+            <!--LivingRoom Temp Chart-->
+            <lvc:Gauge Grid.Row="1" Grid.Column="1" Margin="15"
+                       From="0" To="50" Value="{Binding LivingTempVal}"
+                       LabelsVisibility="Visible">
+                <lvc:Gauge.GaugeActiveFill>
+                    <LinearGradientBrush >
+                        <GradientStop Color="AliceBlue" Offset="0.0"/>
+                        <GradientStop Color="LightSkyBlue" Offset="0.5"/>
+                        <GradientStop Color="DodgerBlue" Offset="1.0"/>
+                    </LinearGradientBrush>
+                </lvc:Gauge.GaugeActiveFill>
+            </lvc:Gauge>
+
+            <!--DiningRoom Temp Chart-->
+            <lvc:Gauge Grid.Row="1" Grid.Column="2" Margin="15"
+                       From="0" To="50" Value="{Binding DiningTempVal}"
+                       LabelsVisibility="Visible">
+                <lvc:Gauge.GaugeActiveFill>
+                    <LinearGradientBrush>
+                        <GradientStop Color="AliceBlue" Offset="0.0"/>
+                        <GradientStop Color="LightSkyBlue" Offset="0.5"/>
+                        <GradientStop Color="DodgerBlue" Offset="1.0"/>
+                    </LinearGradientBrush>
+                </lvc:Gauge.GaugeActiveFill>
+            </lvc:Gauge>
+
+            <!--BedRoom Temp Chart-->
+            <lvc:Gauge Grid.Row="1" Grid.Column="3" Margin="15"
+                       From="0" To="50" Value="{Binding BedTempVal}"
+                       LabelsVisibility="Visible">
+                <lvc:Gauge.GaugeActiveFill>
+                    <LinearGradientBrush>
+                        <GradientStop Color="AliceBlue" Offset="0.0"/>
+                        <GradientStop Color="LightSkyBlue" Offset="0.5"/>
+                        <GradientStop Color="DodgerBlue" Offset="1.0"/>
+                    </LinearGradientBrush>
+                </lvc:Gauge.GaugeActiveFill>
+            </lvc:Gauge>
+
+            <!--BathRoom Temp Chart-->
+            <lvc:Gauge Grid.Row="1" Grid.Column="4" Margin="15"
+                       From="0" To="50" Value="{Binding BathTempVal}"
+                       LabelsVisibility="Visible">
+                <lvc:Gauge.GaugeActiveFill>
+                    <LinearGradientBrush>
+                        <GradientStop Color="AliceBlue" Offset="0.0"/>
+                        <GradientStop Color="LightSkyBlue" Offset="0.5"/>
+                        <GradientStop Color="DodgerBlue" Offset="1.0"/>
+                    </LinearGradientBrush>
+                </lvc:Gauge.GaugeActiveFill>
+            </lvc:Gauge>
+
+            
+            <!--LivingRoom Humid Chart-->
+            <lvc:AngularGauge 
+                Grid.Row="2" Grid.Column="1" Margin="15" FontSize="12" TicksStep="5" LabelsStep="10"
+                FromValue="0" ToValue="90" Value="{Binding LivingHumidVal}"
+                SectionsInnerRadius="0.6">
+                <lvc:AngularGauge.Sections>
+                    <lvc:AngularSection FromValue="0" ToValue="20" Fill="Cyan"/>
+                    <lvc:AngularSection FromValue="20" ToValue="40" Fill="GreenYellow"/>
+                    <lvc:AngularSection FromValue="40" ToValue="70" Fill="Orange"/>
+                    <lvc:AngularSection FromValue="70" ToValue="90" Fill="OrangeRed"/>
+                </lvc:AngularGauge.Sections>                                
+            </lvc:AngularGauge>
+            
+                <!--DiningRoom Humid Chart-->
+            <lvc:AngularGauge 
+                Grid.Row="2" Grid.Column="2" Margin="15" FontSize="12" TicksStep="5" LabelsStep="10"
+                FromValue="0" ToValue="90" Value="{Binding DiningHumidVal}"
+                SectionsInnerRadius="0.6">
+                <lvc:AngularGauge.Sections>
+                    <lvc:AngularSection FromValue="0" ToValue="20" Fill="Cyan"/>
+                    <lvc:AngularSection FromValue="20" ToValue="40" Fill="GreenYellow"/>
+                    <lvc:AngularSection FromValue="40" ToValue="70" Fill="Orange"/>
+                    <lvc:AngularSection FromValue="70" ToValue="90" Fill="OrangeRed"/>
+                </lvc:AngularGauge.Sections>
+            </lvc:AngularGauge>
+
+            <!--BedRoom Humid Chart-->
+            <lvc:AngularGauge 
+                Grid.Row="2" Grid.Column="3" Margin="15" FontSize="12" TicksStep="5"  LabelsStep="10"
+                FromValue="0" ToValue="90" Value="{Binding BedHumidVal}"
+                SectionsInnerRadius="0.6">
+                <lvc:AngularGauge.Sections>
+                    <lvc:AngularSection FromValue="0" ToValue="20" Fill="Cyan"/>
+                    <lvc:AngularSection FromValue="20" ToValue="40" Fill="GreenYellow"/>
+                    <lvc:AngularSection FromValue="40" ToValue="70" Fill="Orange"/>
+                    <lvc:AngularSection FromValue="70" ToValue="90" Fill="OrangeRed"/>
+                </lvc:AngularGauge.Sections>
+            </lvc:AngularGauge>
+            
+            <!--BathRoom Humid Chart-->
+            <lvc:AngularGauge 
+                Grid.Row="2" Grid.Column="4" Margin="15" FontSize="12" TicksStep="5"  LabelsStep="10"
+                FromValue="0" ToValue="90" Value="{Binding BathHumidVal}"
+                SectionsInnerRadius="0.6">
+                <lvc:AngularGauge.Sections>
+                    <lvc:AngularSection FromValue="0" ToValue="20" Fill="Cyan"/>
+                    <lvc:AngularSection FromValue="20" ToValue="40" Fill="GreenYellow"/>
+                    <lvc:AngularSection FromValue="40" ToValue="70" Fill="Orange"/>
+                    <lvc:AngularSection FromValue="70" ToValue="90" Fill="OrangeRed"/>
+                </lvc:AngularGauge.Sections>
+            </lvc:AngularGauge>
+
+        </Grid>
+
     </Grid>
 </UserControl>
