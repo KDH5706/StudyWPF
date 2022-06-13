@@ -67,7 +67,7 @@
 
         <Grid Grid.Row="2" Grid.Column="0" Margin="10">
             <!-- Chart LiveChart >> OxyPlot -->
-            <oxy:PlotView Model="{Binding SmartHomeModel}"/>
+            <oxy:PlotView Model="{Binding HistoryModel}"/>
         </Grid>
     </Grid>
 </UserControl>

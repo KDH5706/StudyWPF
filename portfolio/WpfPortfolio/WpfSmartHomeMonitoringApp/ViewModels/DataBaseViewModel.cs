@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using uPLibrary.Networking.M2Mqtt;
 using uPLibrary.Networking.M2Mqtt.Messages;
 using WpfSmartHomeMonitoringApp.Helpers;
+using WpfSmartHomeMonitoringApp.Models;
 
 namespace WpfSmartHomeMonitoringApp.ViewModels
 {
@@ -154,12 +155,18 @@ namespace WpfSmartHomeMonitoringApp.ViewModels
         private void SetDataBase(string message, string topic)
         {
             var currDatas = JsonConvert.DeserializeObject<Dictionary<string, string>>(message);
-            //Debug.WriteLine(currDatas);
+            var Model = new SmartHomeModel();  //DB 모델사용
+            Debug.WriteLine(currDatas);
+
+            Model.DevId = currDatas["DevId"];
+            Model.CurrTime = DateTime.Parse(currDatas["CurrTime"]);
+            Model.Temp = double.Parse(currDatas["Temp"]);
+            Model.Humid = double.Parse(currDatas["Humid"]);
 
             using (SqlConnection conn = new SqlConnection(ConnString))
             {
                 conn.Open();
-                // Verbatim string : 보간된 축자 문자열
+                // Verbatim string : 보간된 축자 문자열 = @
                 string strInQuery = @"INSERT INTO TblSmartHome
                                                (DevId
                                                ,CurrTime
@@ -174,13 +181,13 @@ namespace WpfSmartHomeMonitoringApp.ViewModels
                 try
                 {
                     SqlCommand cmd = new SqlCommand(strInQuery, conn);
-                    SqlParameter parmDevId = new SqlParameter("@DevId", currDatas["DevId"]);
+                    SqlParameter parmDevId = new SqlParameter("@DevId", Model.DevId);
                     cmd.Parameters.Add(parmDevId);
-                    SqlParameter parmCurrTime = new SqlParameter("@CurrTime", DateTime.Parse(currDatas["CurrTime"]));   //날짜형으로 변환 필요
+                    SqlParameter parmCurrTime = new SqlParameter("@CurrTime", Model.CurrTime);   //날짜형으로 변환 필요
                     cmd.Parameters.Add(parmCurrTime);
-                    SqlParameter parmTemp = new SqlParameter("@Temp", currDatas["Temp"]);
+                    SqlParameter parmTemp = new SqlParameter("@Temp", Model.Temp);
                     cmd.Parameters.Add(parmTemp);
-                    SqlParameter parmHumid = new SqlParameter("@Humid", currDatas["Humid"]);
+                    SqlParameter parmHumid = new SqlParameter("@Humid", Model.Humid);
                     cmd.Parameters.Add(parmHumid);
 
                     if(cmd.ExecuteNonQuery() == 1)

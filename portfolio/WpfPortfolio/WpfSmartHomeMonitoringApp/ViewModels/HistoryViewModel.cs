@@ -1,5 +1,7 @@
 ﻿using Caliburn.Micro;
 using OxyPlot;
+using OxyPlot.Legends;
+using OxyPlot.Series;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -7,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Media;
 using WpfSmartHomeMonitoringApp.Helpers;
 using WpfSmartHomeMonitoringApp.Models;
 
@@ -21,7 +24,7 @@ namespace WpfSmartHomeMonitoringApp.ViewModels
         private string endDate;
         private string initEndDate;
         private int totalCount;
-        private PlotModel smartHomeModel;
+        private PlotModel historyModel; // OxyPlot : 220613, KDH. smartHomeModel -> historyModel 변경
         /* 
          * Divisions
          * DivisionVal  //DivisionMode 클래스내에 존재
@@ -32,7 +35,7 @@ namespace WpfSmartHomeMonitoringApp.ViewModels
          * InitEndDate
          * TotalCount
          * SearchIoTData()
-         * SmartHomeModel
+         * HistoryModel
          */
 
         public BindableCollection<DivisionModel> Divisions
@@ -98,13 +101,13 @@ namespace WpfSmartHomeMonitoringApp.ViewModels
                 NotifyOfPropertyChange(() => TotalCount);
             }
         }
-        public PlotModel SmartHomeModel
+        public PlotModel HistoryModel   // 220613, KDH. smartHomeModel -> historyModel 변경
         {
-            get => smartHomeModel;
+            get => historyModel;
             set
             {
-                smartHomeModel = value;
-                NotifyOfPropertyChange(() => SmartHomeModel);
+                historyModel = value;
+                NotifyOfPropertyChange(() => HistoryModel);
             }
         }
 
@@ -174,15 +177,58 @@ namespace WpfSmartHomeMonitoringApp.ViewModels
                     SqlDataReader reader = cmd.ExecuteReader();
 
                     var i = 0;
+
+                    // start of chart process 220613 추가
+                    PlotModel tmp = new PlotModel() // 임시 플롯모델
+                    {
+                        Title = $"{SelectedDivision.DivisionVal} Histories",
+                        Subtitle = "Using OxyPlot",
+                    };
+
+                    var leg = new Legend  //범례, OxyPlot.Wpf > LegendsDemo 참조
+                    {
+                        LegendBorder = OxyColors.Black,
+                        LegendBackground = OxyColor.FromAColor(200, OxyColors.White),
+                        LegendPosition = LegendPosition.RightTop,
+                        LegendPlacement = LegendPlacement.Inside,
+                    };
+
+                    tmp.Legends.Add(leg);
+
+                    LineSeries seriesTemp = new LineSeries // 온도값을 라인차트로 담을 객체
+                    {
+                        Color = OxyColor.FromRgb(255, 100, 100),
+                        Title = "Temperature",
+                        MarkerSize = 2,
+                        MarkerType = MarkerType.Circle
+                    };
+
+                    LineSeries seriesHumid = new LineSeries // 습도값을 라인차트로 담을 객체
+                    {
+                        Color = OxyColor.FromRgb(150, 150, 255),
+                        Title = "Humidity",
+                        MarkerSize = 2,
+                        MarkerType = MarkerType.Triangle
+                    };
+
+
                     while (reader.Read())
                     {
-                        var temp = reader["Temp"];
+                        // var temp = reader["Temp"];
                         // Temp, Humid 차트데이터를 생성
+                        seriesTemp.Points.Add(new DataPoint(i, Convert.ToDouble(reader["Temp"])));
+                        seriesHumid.Points.Add(new DataPoint(i, Convert.ToDouble(reader["Humid"])));
 
                         i++;
                     }
 
-                    TotalCount = i;
+                    TotalCount = i; // 검색한 데이터 총 개수
+
+                    tmp.Series.Add(seriesTemp);
+                    tmp.Series.Add(seriesHumid);
+
+                    HistoryModel = tmp;
+                    // end of chart process 220613 추가
                 }
                 catch (Exception ex)
                 {

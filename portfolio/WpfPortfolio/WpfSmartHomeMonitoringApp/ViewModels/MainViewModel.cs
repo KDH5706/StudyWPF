@@ -1,5 +1,8 @@
 ﻿using Caliburn.Micro;
 using System;
+using System.Threading;
+using System.Threading.Tasks;
+using WpfSmartHomeMonitoringApp.Helpers;
 
 namespace WpfSmartHomeMonitoringApp.ViewModels
 {
@@ -10,11 +13,22 @@ namespace WpfSmartHomeMonitoringApp.ViewModels
             DisplayName = "SmartHome Monitoring v2.0";  //윈도우 타이틀, 제목
         }
 
+        protected override Task OnDeactivateAsync(bool close, CancellationToken cancellationToken)
+        {
+            if (Commons.MQTT_CLIENT.IsConnected)
+            {
+                Commons.MQTT_CLIENT.Disconnect();
+                Commons.MQTT_CLIENT = null;
+            }  // 비활성화 처리
+
+            return base.OnDeactivateAsync(close, cancellationToken);
+        }
+
         //TODO
         public void LoadDataBaseView()
         {
             //if (Commons.MQTT_CLIENT != null)
-                ActivateItemAsync(new DataBaseViewModel());
+            ActivateItemAsync(new DataBaseViewModel());
             //else
             //    var windowManager = new WindowManager();
             //windowManager.ShowDialog(new ErrorPopupViewModel("Report|MQTT doesn't start, yet"));
@@ -29,42 +43,45 @@ namespace WpfSmartHomeMonitoringApp.ViewModels
             ActivateItemAsync(new HistoryViewModel());
         }
 
-
-        //protected override void OnDeactivateAsync(bool close)
-        //{
-        //    if(Commons.MQTT_CLIENT.IsConnected)
-        //    {
-        //        Commons.MQTT_CLIENT.Disconnect();
-        //        Commons.MQTT_CLIENT = null;
-        //    }
-
-        //    base.OnDeactivateAsync(close);
-        //}
-
-        //public async void PopInfoDialog(object o)
-        //{
-        //    await TaskStart();
-        //}
-        //public void StartSubscriber()
-        //{
-        //    TaskStart();
-        //}
-
-        //private void TaskStart()
-        //{
-        //    var windowManager = new WindowManager();
-        //    var result = windowManager.ShowDialog(new CustomPipupViewModel("New Network"));
-
-        //    if(result == true)
-        //    {
-        //        ActivateItemAsync(new DatabaseMonitoringViewModel());
-        //    }
-        //}
-
-
         public void ExitProgram()
         {
             Environment.Exit(0);
         }
+
+        public void ExitToolbar()
+        {
+            Environment.Exit(0);
+        }
+
+        // Start 메뉴, 아이콘 눌렀을때 처리할 이벤트
+        public void PopInfoDialog()
+        {
+            TaskPupup();
+        }
+        
+        public void StartSubscribe()
+        {
+            TaskPupup();
+        }
+
+        private void TaskPupup()
+        {
+            // CustomPopupView
+            var windowManager = new WindowManager();
+
+            Task<bool?> result = windowManager.ShowDialogAsync(new CustomPopupViewModel("New Network"));
+
+            if (result.Result == true)  //if (result.IsCompleted)
+            {
+                ActivateItemAsync(new DataBaseViewModel()); // 화면전환
+            }
+        }
+
+        public void PopInfoView()
+        {
+            var windowManager = new WindowManager();
+            windowManager.ShowDialogAsync(new CustomInfoViewModel("About"));
+        }
+
     }
 }
