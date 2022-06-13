@@ -40,11 +40,20 @@
   - MahApps.Metro UI/Modern UI
   - Caliburn.Micro
   - LiveCharts
+  - OxyPlot.Wpf
   - M2Mqtt
   - Newtonsoft.Json
   - SQLServer DB
 
+<br/>
+
 ![SmartHomMonitoring](https://github.com/KDH5706/StudyWPF/blob/main/capture/SmartHomeMonitoring.png)
 DB 모니터링 화면
 
-<br/>
+![RealTimeView](https://raw.githubusercontent.com/KDH5706/StudyWPF/main/capture/RealTimeView.png)
+실시간 센서 디스플레이
+
+![HistoryView](https://raw.githubusercontent.com/KDH5706/StudyWPF/main/capture/HistoryView.png)
+센서값 시각화 및 프로그램 정보 창
+
+
