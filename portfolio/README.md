@@ -51,10 +51,10 @@
 ![SmartHomMonitoring](https://github.com/KDH5706/StudyWPF/blob/main/capture/SmartHomeMonitoring.png)
 DB 모니터링 화면
 
-![RealTimeView](https://raw.githubusercontent.com/KDH5706/StudyWPF/main/capture/RealTimeView.png)
+![RealTimeView](https://raw.githubusercontent.com/KDH5706/StudyWPF/main/capture/realtimeview.png)
 실시간 센서 디스플레이
 
-![HistoryView](https://raw.githubusercontent.com/KDH5706/StudyWPF/main/capture/HistoryView.png)
+![HistoryView](https://raw.githubusercontent.com/KDH5706/StudyWPF/main/capture/historyview.png)
 센서값 시각화 및 프로그램 정보 창
 
 
