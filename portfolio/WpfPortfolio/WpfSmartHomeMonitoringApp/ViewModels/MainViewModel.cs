@@ -37,33 +37,60 @@ namespace WpfSmartHomeMonitoringApp.ViewModels
         {
             ActivateItemAsync(new RealTimeViewModel());
         }
-
         public void LoadHistoryView()
         {
             ActivateItemAsync(new HistoryViewModel());
         }
-
         public void ExitProgram()
         {
             Environment.Exit(0);
         }
-
         public void ExitToolbar()
         {
             Environment.Exit(0);
         }
+        public void ToolBarStopSubscribe()
+        {
+            StopSubscribe();
+        }
+
+        public void MenuStopSubscribe()
+        {
+            StopSubscribe();
+        }
+
+        private void StopSubscribe()
+        {
+            if(this.ActiveItem is DataBaseViewModel)
+            {
+                DataBaseViewModel activeModel = (DataBaseViewModel)this.ActiveItem;
+                try
+                {
+                    if(Commons.MQTT_CLIENT.IsConnected)
+                    {
+                        Commons.MQTT_CLIENT.MqttMsgPublishReceived -= activeModel.MQTT_CLIENT_MqttMsgPublishReceived;
+                        Commons.MQTT_CLIENT.Disconnect();
+                        activeModel.IsConnected = Commons.IS_CONNECT = false;
+                    }
+                }
+                catch (Exception)
+                {
+                    //pass
+                }
+                DeactivateItemAsync(this.ActiveItem, true);
+            }
+        }
+
 
         // Start 메뉴, 아이콘 눌렀을때 처리할 이벤트
         public void PopInfoDialog()
         {
             TaskPupup();
         }
-        
         public void StartSubscribe()
         {
             TaskPupup();
         }
-
         private void TaskPupup()
         {
             // CustomPopupView
@@ -76,7 +103,6 @@ namespace WpfSmartHomeMonitoringApp.ViewModels
                 ActivateItemAsync(new DataBaseViewModel()); // 화면전환
             }
         }
-
         public void PopInfoView()
         {
             var windowManager = new WindowManager();

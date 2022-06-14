@@ -130,11 +130,6 @@ namespace WpfSmartHomeMonitoringApp.ViewModels
             }
         }
 
-        private void MQTT_CLIENT_MqttMsgSubscribed(object sender, MqttMsgSubscribedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
         private void UpdateText(string message)
         {
             DbLog += $"{message}\n";
@@ -145,7 +140,7 @@ namespace WpfSmartHomeMonitoringApp.ViewModels
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void MQTT_CLIENT_MqttMsgPublishReceived(object sender, MqttMsgPublishEventArgs e)
+        public void MQTT_CLIENT_MqttMsgPublishReceived(object sender, MqttMsgPublishEventArgs e)
         {
             string message = Encoding.Default.GetString(e.Message);
             UpdateText(message);    // 센서데이터 출력

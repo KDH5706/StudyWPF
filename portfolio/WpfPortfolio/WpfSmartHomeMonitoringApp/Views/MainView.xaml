@@ -28,7 +28,7 @@
                                 <iconPacks:MaterialDesign Kind="PlayCircleFilled"/>
                             </MenuItem.Icon>
                         </MenuItem>
-                        <MenuItem Header="Stop">
+                        <MenuItem x:Name="MenuStopSubscribe" Header="Stop">
                             <MenuItem.Icon>
                                 <iconPacks:MaterialDesign Kind="PauseCircleFilled"/>
                             </MenuItem.Icon>
@@ -80,7 +80,7 @@
                         <Button x:Name="StartSubscribe" ToolTip="Start MQTT Subscriber">
                             <iconPacks:MaterialDesign Kind="PlayCircleFilled"/>
                         </Button>
-                        <Button ToolTip="Stop MQTT Subscriber">
+                        <Button x:Name="ToolBarStopSubscribe" ToolTip="Stop MQTT Subscriber">
                             <iconPacks:MaterialDesign Kind="PauseCircleFilled"/>
                         </Button>
                         <Separator/>
